@@ -1,8 +1,11 @@
 local isWatermarkOn = true
+local playerLoadName
 
--- If you wish to enable support for qb-core, update the event name to 'QBCore:Client:OnPlayerLoaded'
-RegisterNetEvent('esx:playerLoaded', function()
-    toggleWatermark(isWatermarkOn)
+if GetResourceState('es_extended') ~= 'missing' then playerLoadName = 'esx:playerLoaded' end
+if GetResourceState('qb-core') ~= 'missing' then playerLoadName = 'QBCore:Client:OnPlayerLoaded' end
+
+RegisterNetEvent(playerLoadName, function() 
+        toggleWatermark(isWatermarkOn) 
 end)
 
 RegisterCommand('watermark', function(source, args)

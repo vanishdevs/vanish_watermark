@@ -5,7 +5,7 @@ if GetResourceState('es_extended') ~= 'missing' then playerLoadName = 'esx:playe
 if GetResourceState('qb-core') ~= 'missing' then playerLoadName = 'QBCore:Client:OnPlayerLoaded' end
 
 RegisterNetEvent(playerLoadName, function() 
-        toggleWatermark(isWatermarkOn) 
+    toggleWatermark(isWatermarkOn) 
 end)
 
 RegisterCommand('watermark', function(source, args)

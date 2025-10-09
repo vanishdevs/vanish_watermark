@@ -7,5 +7,5 @@ description 'Watermark system for FiveM'
 
 client_script 'client.lua'
 
-ui_page 'html/index.html'
-files { 'html/*' }
+ui_page 'web/index.html'
+files { 'web/*' }

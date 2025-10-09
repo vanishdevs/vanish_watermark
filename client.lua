@@ -1,22 +1,42 @@
-local isWatermarkOn = true
-local playerLoadName
+local loaded = false
+local enabled = true
 
-if GetResourceState('es_extended') ~= 'missing' then playerLoadName = 'esx:playerLoaded' end
-if GetResourceState('qb-core') ~= 'missing' then playerLoadName = 'QBCore:Client:OnPlayerLoaded' end
+---@param visible boolean
+local function setVisibility(visible)
+    SetNuiFocus(false, false)
+    SendNUIMessage({
+        status = visible
+    })
+end
 
-RegisterNetEvent(playerLoadName, function() 
-    toggleWatermark(isWatermarkOn) 
+CreateThread(function()
+    while true do
+        if IsPauseMenuActive() and enabled then
+            setVisibility(false)
+        else
+            if enabled and loaded then
+                setVisibility(true)
+            end
+        end
+
+        Wait(200)
+    end
 end)
 
 RegisterCommand('watermark', function(source, args)
-    isWatermarkOn = not isWatermarkOn
-    toggleWatermark(isWatermarkOn)
+    enabled = not enabled
+    toggleWatermark(enabled)
 end)
 
--- @param isVisible boolean
-function toggleWatermark(isVisible)
-    SetNuiFocus(false, false)
-    SendNUIMessage({
-        status = isVisible
-    })
-end
+exports('loadWatermark', function()
+    setVisibility(enabled)
+    loaded = true
+end)
+
+exports('showWatermark', function() 
+    setVisibility(true)
+end)
+
+exports('hideWatermark', function() 
+    setVisibility(false)
+end)

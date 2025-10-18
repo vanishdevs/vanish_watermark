@@ -3,9 +3,11 @@ game 'gta5'
 lua54 'yes'
 
 author 'vanishdev'
-description 'Watermark system for FiveM'
 
+shared_scripts { '@ox_lib/init.lua', 'shared/*.lua' }
 client_script 'client.lua'
 
 ui_page 'web/index.html'
 files { 'web/*' }
+
+dependency 'ox_lib'

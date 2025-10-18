@@ -1,0 +1,1 @@
+config = lib.load('shared.config')

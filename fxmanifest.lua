@@ -5,7 +5,9 @@ lua54 'yes'
 author 'vanishdev'
 description 'Watermark system for FiveM'
 
-client_script 'client.lua'
+shared_script '@ox_lib/init.lua'
+
+client_script 'client/main.lua'
 
 ui_page 'web/index.html'
-files { 'web/*' }
+files {'web/*', 'shared/config.lua'}
